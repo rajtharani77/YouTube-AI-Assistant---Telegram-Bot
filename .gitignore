@@ -1,4 +1,4 @@
-# Dependencies
+
 __pycache__/
 *.py[cod]
 *$py.class
@@ -20,7 +20,6 @@ wheels/
 .installed.cfg
 *.egg
 
-# Virtual Environment
 venv/
 .venv/
 env/
@@ -28,7 +27,6 @@ ENV/
 env.bak/
 venv.bak/
 
-# IDE
 .vscode/
 .idea/
 *.swp
@@ -38,7 +36,6 @@ venv.bak/
 *.sublime-project
 *.sublime-workspace
 
-# Environment & Secrets
 .env
 .env.local
 .env.*.local
@@ -46,7 +43,6 @@ venv.bak/
 *.key
 *.crt
 
-# Database & Data
 data/bot.db
 data/bot.db-journal
 data/embeddings/
@@ -54,12 +50,10 @@ data/embeddings/
 *.sqlite
 *.sqlite3
 
-# Logs
 logs/
 *.log
 *.log.*
 
-# Temporary files
 *.tmp
 *.temp
 .cache/
@@ -67,16 +61,11 @@ logs/
 .coverage
 htmlcov/
 
-# OS
 .DS_Store
 Thumbs.db
 *.bak
-
-# Project specific
 dist/
 build/
 *.egg-info/
-
-# Keep these folders but ignore contents
 !/data/.gitkeep
 !/logs/.gitkeep

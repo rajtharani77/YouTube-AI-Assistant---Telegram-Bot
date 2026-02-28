@@ -28,7 +28,6 @@ def generate_summary(text: str) -> str:
         
         logger.info("Starting summary generation")
         
-        # Truncate to avoid token limits
         truncated_text = safe_truncate(text)
         
         prompt = SUMMARY_PROMPT.format(transcript=truncated_text)

@@ -7,7 +7,6 @@ from core.chunking import chunk_text
 from utils.logger import logger
 from utils.exceptions import TranscriptError
 
-
 def process_youtube_video(url: str) -> dict:
     """
     Fetch transcript and prepare chunks for a YouTube video

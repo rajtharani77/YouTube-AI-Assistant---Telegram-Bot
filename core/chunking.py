@@ -41,4 +41,4 @@ def chunk_text(text: str, chunk_size: int = 800, overlap: int = 100) -> list:
         
     except Exception as e:
         logger.error(f"Chunking failed: {e}")
-        return [text]  # Return original text as fallback
+        return [text]  

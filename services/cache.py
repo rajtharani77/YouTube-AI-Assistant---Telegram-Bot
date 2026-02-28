@@ -17,7 +17,7 @@ class SessionManager:
     
     def __init__(self):
         self.db_path = Config.DATABASE_URL.replace("sqlite:///./", "")
-        self.in_memory_cache = {}  # Fallback in-memory cache
+        self.in_memory_cache = {}  
         self._init_database()
     
     def _init_database(self):
@@ -52,10 +52,8 @@ class SessionManager:
             data: Dictionary containing summary and chunks
         """
         try:
-            # Also keep in-memory copy for quick access
             self.in_memory_cache[user_id] = data
             
-            # Persist to database
             expiration = datetime.now() + timedelta(hours=Config.TOKEN_EXPIRY_HOURS)
             
             with sqlite3.connect(self.db_path) as conn:
@@ -78,7 +76,6 @@ class SessionManager:
             
         except sqlite3.Error as e:
             logger.error(f"Failed to save user data: {e}")
-            # Fall back to in-memory storage
             self.in_memory_cache[user_id] = data
     
     def get_user_data(self, user_id: int) -> dict:
@@ -92,11 +89,8 @@ class SessionManager:
             Dictionary with user data or None if expired/not found
         """
         try:
-            # Check in-memory first
             if user_id in self.in_memory_cache:
                 return self.in_memory_cache[user_id]
-            
-            # Fetch from database
             with sqlite3.connect(self.db_path) as conn:
                 conn.row_factory = sqlite3.Row
                 cursor = conn.cursor()
@@ -111,7 +105,6 @@ class SessionManager:
                         "summary": row["summary"],
                         "chunks": json.loads(row["chunks"]),
                     }
-                    # Cache in memory
                     self.in_memory_cache[user_id] = data
                     return data
             
@@ -153,12 +146,8 @@ class SessionManager:
         except sqlite3.Error as e:
             logger.error(f"Failed to cleanup expired sessions: {e}")
 
-
-# Global session manager
 session_manager = SessionManager()
 
-
-# Backward compatibility functions
 def save_user_data(user_id: int, data: dict):
     """Backward compatible save function"""
     session_manager.save_user_data(user_id, data)

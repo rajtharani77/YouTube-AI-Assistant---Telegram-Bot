@@ -22,37 +22,32 @@ from bot.commands import (
     clear_command,
 )
 
-
 def start_bot():
     """
     Initialize and start the Telegram bot
     """
     try:
         logger.info("Starting Telegram Bot...")
+        if not Config.TELEGRAM_TOKEN:
+            raise ConfigurationError("TELEGRAM_TOKEN not found in environment variables")
         logger.info(f"Configuration: {Config.to_dict()}")
         
-        # Create the Application
         app = ApplicationBuilder().token(Config.TELEGRAM_TOKEN).build()
-        
-        # Log handlers
         logger.info("Registering command handlers...")
         
-        # Command handlers
         app.add_handler(CommandHandler("start", start_command))
         app.add_handler(CommandHandler("help", help_command))
         app.add_handler(CommandHandler("summary", summary_command))
         app.add_handler(CommandHandler("clear", clear_command))
         
-        # Message handler for all non-command text
         app.add_handler(
             MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message)
         )
         
         logger.info("All handlers registered successfully")
-        logger.info("✅ Bot is running and ready to receive messages...")
+        logger.info("Bot is running and ready to receive messages...")
         
-        # Start polling
-        app.run_polling()
+        app.run_polling(drop_pending_updates=True)
         
     except ConfigurationError as e:
         logger.error(f"Configuration error: {e}")

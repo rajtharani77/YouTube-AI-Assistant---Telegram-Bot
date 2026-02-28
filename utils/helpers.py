@@ -4,8 +4,6 @@ General utility functions
 """
 
 from utils.logger import logger
-
-
 def safe_truncate(text: str, limit: int = 12000) -> str:
     """
     Safely truncate text to specified character limit
@@ -22,13 +20,10 @@ def safe_truncate(text: str, limit: int = 12000) -> str:
     
     if len(text) <= limit:
         return text
-    
-    # Truncate and add indicator
+
     truncated = text[:limit]
     logger.warning(f"Text truncated from {len(text)} to {limit} characters")
     return truncated + "\n\n[... truncated ...]"
-
-
 def format_list(items: list) -> str:
     """
     Format list items with numbering
@@ -43,8 +38,6 @@ def format_list(items: list) -> str:
         return ""
     
     return "\n".join([f"{i+1}. {item}" for i, item in enumerate(items)])
-
-
 def chunk_by_sentences(text: str, max_length: int = 500) -> list:
     """
     Split text by sentences rather than just words
@@ -60,7 +53,6 @@ def chunk_by_sentences(text: str, max_length: int = 500) -> list:
     if not text:
         return []
     
-    # Split by common sentence endings
     import re
     sentences = re.split(r'(?<=[.!?])\s+', text)
     

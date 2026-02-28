@@ -25,15 +25,12 @@ def translate(text: str, language: str) -> str:
     try:
         if not text or not isinstance(text, str):
             raise ValueError("Text must be a non-empty string")
-        
         if not language or not isinstance(language, str):
             raise ValueError("Language must be a non-empty string")
-        
-        logger.info(f"Translating to {language}")
-        
+
+        logger.info(f"Translating to {language}")     
         prompt = TRANSLATE_PROMPT.format(language=language, text=text)
         translated = ask_llm(prompt)
-        
         logger.info(f"Translation to {language} completed")
         return translated
         

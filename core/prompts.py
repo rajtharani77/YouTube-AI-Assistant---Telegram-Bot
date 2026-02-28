@@ -1,19 +1,16 @@
 SUMMARY_PROMPT = """
 You are an AI research assistant.
-
 Create a structured YouTube summary.
-
 Return format:
 
-🎥 Title
-📌 Key Points (5)
-⏱ Important Timestamps
-🧠 Core Insight
+ Title
+ Key Points (5)
+ Important Timestamps
+ Core Insight
 
 Transcript:
 {transcript}
 """
-
 
 QA_PROMPT = """
 Answer ONLY using provided transcript context.
@@ -27,8 +24,6 @@ Context:
 Question:
 {question}
 """
-
-
 TRANSLATE_PROMPT = """
 Translate below content into {language}.
 Keep formatting identical.

@@ -6,7 +6,6 @@ Validates user inputs and data formats
 import re
 from utils.exceptions import ValidationError
 
-
 def is_youtube_url(text: str) -> bool:
     """
     Validate if text is a YouTube URL
@@ -19,15 +18,12 @@ def is_youtube_url(text: str) -> bool:
     """
     if not text or not isinstance(text, str):
         return False
-    
     patterns = [
         r"(?:https?://)?(www\.)?youtu\.be/",
         r"(?:https?://)?(www\.)?youtube\.com/watch",
         r"(?:https?://)?(www\.)?youtube\.com/embed/",
     ]
-    
     return any(re.search(pattern, text) for pattern in patterns)
-
 
 def is_empty(text: str) -> bool:
     """
@@ -45,20 +41,14 @@ def is_empty(text: str) -> bool:
 def validate_question(question: str) -> bool:
     """
     Validate if text is a reasonable question
-    
-    Args:
-        question: Question text
+    Args:question: Question text
         
-    Returns:
-        True if valid, False otherwise
+    Returns:True if valid, False otherwise
     """
     if not question or not isinstance(question, str):
-        return False
-    
+        return False   
     question = question.strip()
-    # Question should be at least 3 characters
     return len(question) >= 3
-
 
 def validate_language(language: str) -> bool:
     """
@@ -74,5 +64,4 @@ def validate_language(language: str) -> bool:
         return False
     
     language = language.strip()
-    # Language name should be at least 2 characters
     return len(language) >= 2 and language.isalpha()

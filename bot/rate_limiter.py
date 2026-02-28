@@ -13,8 +13,7 @@ class RateLimiter:
     """Simple rate limiter for per-user requests"""
     
     def __init__(self):
-        # Store user request timestamps
-        self.user_requests = {}  # user_id -> [timestamps]
+        self.user_requests = {}  
         self.max_requests = Config.MAX_REQUESTS_PER_MINUTE
         self.window_minutes = 1
     
@@ -30,24 +29,18 @@ class RateLimiter:
         """
         now = datetime.now()
         window_start = now - timedelta(minutes=self.window_minutes)
-        
-        # Get user's recent requests (within time window)
         user_id_str = str(user_id)
         if user_id_str not in self.user_requests:
             self.user_requests[user_id_str] = []
         
-        # Remove old timestamps outside window
         self.user_requests[user_id_str] = [
             ts for ts in self.user_requests[user_id_str]
             if ts > window_start
         ]
         
-        # Check if within limit
         if len(self.user_requests[user_id_str]) >= self.max_requests:
             logger.warning(f"Rate limit exceeded for user {user_id}")
             return False
-        
-        # Add current request
         self.user_requests[user_id_str].append(now)
         return True
     
@@ -58,8 +51,6 @@ class RateLimiter:
         remaining = max(0, self.max_requests - len(requests))
         return remaining
 
-
-# Global rate limiter instance
 rate_limiter = RateLimiter()
 
 
