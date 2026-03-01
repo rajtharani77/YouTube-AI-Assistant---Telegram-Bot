@@ -84,23 +84,21 @@ Data Storage
 YouTube-AI-Assistant---Telegram-Bot/
 │
 ├── bot/
-│ ├── telegram_bot.py # Bot initialization & polling
-│ ├── handlers.py # Message routing logic
-│ └── commands.py # Telegram commands
+│ ├── telegram_bot.py 
+│ ├── handlers.py
+│ └── commands.py 
 │
 ├── core/
-│ ├── transcript.py # YouTube transcript extraction
-│ ├── summarizer.py # Hierarchical summarization
-│ ├── qa_engine.py # Question answering engine
-│ └── prompts.py # LLM prompt templates
+│ ├── transcript.py
+│ ├── summarizer.py 
+│ ├── qa_engine.py 
+│ └── prompts.py
 │
 ├── services/
-│ ├── llm_service.py # Gemini model interaction
-│ └── youtube_service.py # Video processing service
-│
+│ ├── llm_service.py
+│ └── youtube_service.py
 ├── data/
-│ └── mongo.py # MongoDB connection
-│
+│ └── mongo.py
 ├── utils/
 │ ├── logger.py
 │ ├── helpers.py
@@ -108,13 +106,12 @@ YouTube-AI-Assistant---Telegram-Bot/
 │ └── exceptions.py
 │
 ├── config/
-│ └── settings.py # Environment configuration
+│ └── settings.py 
 │
 ├── logs/
-├── main.py # Application entry point
+├── main.py 
 ├── requirements.txt
 └── README.md
-
 
 ---
 
@@ -244,7 +241,7 @@ Ensures:
 
 ---
 
-# 🛠 Technology Stack
+# Technology Stack
 
 | Layer | Technology |
 |------|------------|
@@ -301,7 +298,7 @@ python main.py
 
 Open Telegram → search your bot → send a YouTube link.
 
-💬 Example Workflow
+ Example Workflow
 Input
 https://youtu.be/example
 Bot Output
@@ -333,6 +330,6 @@ Web dashboard
 Raj Tharani
 GitHub: https://github.com/rajtharani77
 
-📜 License
+ License
 
 MIT License
